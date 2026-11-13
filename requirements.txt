@@ -1,0 +1,11 @@
+# SmartRoad - common runtime dependencies (desktop / generic)
+fastapi>=0.110
+uvicorn>=0.27
+websockets>=12.0
+pydantic>=2.5
+PyYAML>=6.0
+numpy>=1.26
+opencv-python-headless>=4.8
+onnxruntime>=1.17
+pyserial>=3.5
+psutil>=5.9

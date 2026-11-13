@@ -1,0 +1,87 @@
+# SmartRoad configuration.  Every key is optional; omitted keys use the
+# defaults in app/config.py.  Paths are relative to the project folder.
+# Any value can also be overridden with an environment variable, e.g.
+#   SMARTROAD__GPS__DEVICE=/dev/ttyAMA0
+
+app:
+  host: 127.0.0.1          # API/UI bind address (local only by default)
+  port: 8000
+  allow_lan: false         # true -> listen on 0.0.0.0 (anyone on the LAN can open the UI)
+  log_level: INFO
+
+camera:
+  backend: auto            # auto | opencv | picamera2 | video | image | demo
+  device: 0                # USB webcam index (or /dev/video0)
+  source: ""               # file path for backend video / image
+  width: 1280
+  height: 720
+  fps: 30
+  process_width: 640       # frames are downscaled to this width before inference
+  stream_fps: 15
+  flip: false
+
+model:
+  path: models/pothole.onnx
+  confidence: 0.45
+  iou: 0.50
+  input_size: 640
+  classes: [pothole]       # add crack, speed_bump, obstruction ... in model order
+  output_format: auto      # auto | yolov8 | yolov5 | nms
+  threads: 4
+  frame_skip: 1            # raise to 2-3 on a slow Raspberry Pi
+
+events:
+  min_confidence: 0.55           # MIN_CONFIDENCE
+  min_stable_frames: 5           # MIN_STABLE_FRAMES
+  min_distance_between_events: 3.0   # metres
+  cooldown_seconds: 5.0          # EVENT_COOLDOWN_SECONDS
+
+geolocation:
+  mode: fixed                    # fixed | bbox (bbox = flat-road geometry estimate)
+  distance_estimate_m: 8.0       # POTHOLE_DISTANCE_ESTIMATE
+  hfov_deg: 70.0                 # horizontal field of view of the camera
+
+gps:
+  mode: serial                   # serial | simulated
+  device: /dev/ttyUSB0           # Windows: COM3
+  baudrate: 9600
+
+hazards:
+  merge_radius_m: 4.0            # HAZARD_MERGE_RADIUS (3-5 m recommended)
+
+proximity:
+  warning_distance_m: 50         # WARNING_DISTANCE
+  critical_distance_m: 20        # CRITICAL_DISTANCE
+
+route:
+  track_interval_s: 1.0          # GPS_TRACK_INTERVAL
+  min_distance_m: 3.0
+
+severity:
+  medium_threshold: 0.35
+  high_threshold: 0.65
+
+imu:
+  enabled: false                 # MPU6050 on I2C bus 1, address 0x68
+
+privacy:
+  enabled: false                 # blur faces / licence plates in saved images
+  blur_faces: true
+  blur_plates: true
+
+map:
+  tile_url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+  offline_tiles_dir: data/tiles  # optional pre-downloaded {z}/{x}/{y}.png
+  default_zoom: 17
+  zoom_by_speed: true
+  default_center: [28.6139, 77.2090]
+
+database:
+  path: data/smartroad.db
+
+display:
+  brightness: null               # 0-100, applied only if a backlight exists
+
+demo:
+  speed_kmh: 45
+  time_scale: 1.0                # >1 runs the demo faster

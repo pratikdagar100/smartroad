@@ -1,0 +1,13 @@
+# Raspberry Pi OS (64-bit). numpy / opencv / picamera2 come from apt
+# (python3-numpy python3-opencv python3-picamera2) and are used through a
+# venv created with --system-site-packages, so pip never replaces them.
+fastapi>=0.110
+uvicorn>=0.27
+websockets>=12.0
+pydantic>=2.5
+PyYAML>=6.0
+onnxruntime>=1.17
+pyserial>=3.5
+psutil>=5.9
+smbus2>=0.4        # optional MPU6050 IMU
+# optional dev/test: pytest httpx

@@ -1,0 +1,4 @@
+# Windows test machine: runtime + test tools
+-r requirements.txt
+pytest>=8.0
+httpx>=0.27

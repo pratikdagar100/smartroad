@@ -1,0 +1,13 @@
+[
+  {
+    "id": "yolov8n-pothole-seg",
+    "name": "YOLOv8n pothole (13 MB, Raspberry Pi friendly)",
+    "file": "pothole.onnx",
+    "url": "https://huggingface.co/seanjudelyons/yolov8n-pothole-segmentation-onnx/resolve/main/best.onnx",
+    "sha256": "5d17fb2c878825ca97e6ebd09601a43251ce77820565c91cb0bfb76e793f308d",
+    "size_mb": 13,
+    "classes": ["pothole"],
+    "input_size": 640,
+    "notes": "Single-class pothole detector (YOLOv8n-seg head; masks ignored). Public community model trained on the Roboflow pothole dataset - check the model card licence before commercial use. Accuracy is limited: expect misses on small / dark potholes; fine-tune on your own roads for production."
+  }
+]

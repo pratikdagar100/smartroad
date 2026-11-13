@@ -1,0 +1,44 @@
+[
+ {
+  "latitude": 28.615276,
+  "longitude": 77.210911,
+  "type": "pothole",
+  "width_m": 1.2,
+  "known": false
+ },
+ {
+  "latitude": 28.616788,
+  "longitude": 77.21315,
+  "type": "pothole",
+  "width_m": 1.4,
+  "known": false
+ },
+ {
+  "latitude": 28.617606,
+  "longitude": 77.2158,
+  "type": "pothole",
+  "width_m": 1.2,
+  "known": true
+ },
+ {
+  "latitude": 28.61767,
+  "longitude": 77.218587,
+  "type": "pothole",
+  "width_m": 1.3,
+  "known": false
+ },
+ {
+  "latitude": 28.617052,
+  "longitude": 77.221305,
+  "type": "pothole",
+  "width_m": 1.2,
+  "known": true
+ },
+ {
+  "latitude": 28.616485,
+  "longitude": 77.223323,
+  "type": "pothole",
+  "width_m": 1.5,
+  "known": false
+ }
+]

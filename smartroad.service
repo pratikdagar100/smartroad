@@ -1,0 +1,27 @@
+# SmartRoad backend (camera + AI + GPS + API).  Installed by install_pi.sh, which
+# fills in @USER@, @DIR@ and @GROUPS@.  The kiosk browser is started by the
+# desktop session (see scripts/smartroad-kiosk.sh) because it needs the display.
+[Unit]
+Description=SmartRoad road hazard detection backend
+After=network-online.target local-fs.target systemd-udev-settle.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=@USER@
+Group=@USER@
+SupplementaryGroups=@GROUPS@
+WorkingDirectory=@DIR@
+Environment=PYTHONUNBUFFERED=1
+ExecStart=@DIR@/.venv/bin/python -m app.main
+Restart=always
+RestartSec=3
+StartLimitIntervalSec=0
+TimeoutStopSec=15
+# Local-only hardening (camera/serial/I2C access is kept)
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=@DIR@
+
+[Install]
+WantedBy=multi-user.target

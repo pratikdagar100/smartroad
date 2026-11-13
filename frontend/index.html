@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartRoad</title>
+<link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header id="topbar">
+  <div class="brand"><span class="logo">&#9670;</span> SMARTROAD </div>
+  <select id="mode-select" title="Input source: live camera / test / video / demo"></select>
+  <div class="chips">
+    <span class="chip" id="chip-gps"><i></i>GPS</span>
+    <span class="chip" id="chip-camera"><i></i>CAMERA</span>
+    <span class="chip" id="chip-ai"><i></i>AI</span>
+    <span class="chip" id="chip-database"><i></i>DB</span>
+  </div>
+  <nav id="tabs">
+    <button data-view="drive" class="active">DRIVE</button>
+    <button data-view="health">HEALTH</button>
+    <button data-view="settings">SETTINGS</button>
+  </nav>
+  <div class="speed"><b id="speed">0</b><small>km/h</small></div>
+</header>
+
+<main id="view-drive" class="view">
+  <section class="panel" id="cam-panel">
+    <div class="panel-title">LIVE CAMERA</div>
+    <div class="video-wrap">
+      <img id="video" alt="live camera" src="/video.mjpg">
+      <div id="banners">
+        <div id="banner-known" class="banner" hidden></div>
+        <div id="banner-detect" class="banner" hidden></div>
+      </div>
+      <div id="overlay-msgs"></div>
+      <div id="det-list"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="map-panel">
+    <div class="panel-title">LIVE MAP <span id="map-note" class="note" hidden>map tiles offline &mdash; showing hazards only</span></div>
+    <div id="map"></div>
+    <div id="map-controls">
+      <button id="btn-zoom-in" title="Zoom in">+</button>
+      <button id="btn-zoom-out" title="Zoom out">&minus;</button>
+      <button id="btn-center" title="Center vehicle">CENTER</button>
+      <button id="btn-all" title="Show all hazards">ALL</button>
+      <button id="btn-ncr" title="Delhi NCR overview">NCR</button>
+      <button id="btn-clear" title="Clear route view">CLEAR</button>
+      <button id="btn-live" class="on" title="Follow vehicle">LIVE</button>
+    </div>
+    <div id="legend">
+      <span><i class="dot new"></i>NEW</span><span><i class="dot known"></i>KNOWN</span>
+      <span><i class="dot severe"></i>SEVERE</span><span><i class="dot fixed"></i>FIXED</span>
+    </div>
+  </section>
+</main>
+
+<main id="view-health" class="view" hidden>
+  <div id="health-grid" class="cards"></div>
+  <pre id="health-events"></pre>
+</main>
+
+<main id="view-settings" class="view" hidden>
+  <div id="settings-top" class="cards"></div>
+  <form id="settings-form" class="cards"></form>
+  <div id="settings-info"></div>
+</main>
+
+<div id="switching" hidden><div>SWITCHING SOURCE&hellip;<small>restarting the camera and GPS</small></div></div>
+
+<footer id="bottombar">
+  <span>DETECT <b id="b-fps">0</b> fps</span>
+  <span>GPS &plusmn;<b id="b-acc">--</b> m</span>
+  <span>KNOWN HAZARDS <b id="b-known">0</b></span>
+  <span>ROUTE <b id="b-route">--</b></span>
+  <span>STORAGE <b id="b-disk">--</b></span>
+  <span id="b-conn" class="conn">CONNECTING</span>
+</footer>
+
+<script src="/vendor/leaflet/leaflet.js"></script>
+<script src="/js/map.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
